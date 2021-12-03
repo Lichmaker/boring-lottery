@@ -1,0 +1,18 @@
+FROM golang:1.16.5-alpine3.13 as goBuilder
+RUN apk add --no-cache bash
+RUN mkdir -p /crawler-build
+WORKDIR /crawler-build
+COPY . .
+RUN /bin/bash -c 'if [ ! -e ".env" ]; then  echo "env file not found" ;  exit 1  ; else echo "check env file success" ; exit 0; fi '
+WORKDIR /crawler-build/app/console/crawler
+RUN go build -o lottery-crawler
+
+FROM alpine:latest
+RUN apk add tzdata
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' > /etc/timezone
+RUN mkdir -p /crawler
+WORKDIR /crawler
+COPY --from=goBuilder /crawler-build/app/console/crawler/lottery-crawler .
+COPY --from=goBuilder /crawler-build/.env .
+ENTRYPOINT ["./lottery-crawler"]

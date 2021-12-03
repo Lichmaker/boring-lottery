@@ -1,0 +1,51 @@
+{{ template "header"}}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			{{ template "nav" }}
+			<div class="jumbotron">
+				<h1>
+					我干嘛的？
+				</h1>
+				<div>
+					<p>读取天气实时状况数据，包括但不限于温度、空气质量、风向、风速等，</p>
+                    <p>使用简单的运算（只有加减乘除）而非复杂的算法，最终通过取模运算，生成双色球预测。</p>
+					<p>因为每天的天气不会有太大的变化，所以有部分数字的重复率较高，还在尝试调整中，减低重复率。</p>
+                    <p>听天由命，仅供参考，Have Fun :)</p>
+				</div>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							生成时间
+						</th>
+						<th>
+							蓝色
+						</th>
+						<th>
+							红色
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{ range $_, $v := .arr }}
+					<tr>
+						<td>
+							{{ $v.DateTime }}
+						</td>
+						<td>
+							{{ $v.Blue }}
+						</td>
+						<td>
+							{{ $v.Red }}
+						</td>
+					</tr>
+				{{ end }}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{{ template "footer"}}

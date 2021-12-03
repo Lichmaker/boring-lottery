@@ -1,0 +1,49 @@
+{{ template "header"}}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			{{ template "nav" }}
+			<div class="jumbotron">
+				<h1>
+					开奖历史
+				</h1>
+				<div>
+					<p>从中国福利官网(www.cwl.gov.cn)爬虫拿回来的开奖历史</p>
+                    <p>如有需要，通过本域名接口(/v1/api/get)，可以免费获取到最新一期的数据</p>
+				</div>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							期号
+						</th>
+						<th>
+							蓝色
+						</th>
+						<th>
+							红色
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{ range $_, $v := .arr }}
+					<tr>
+						<td>
+							{{ $v.Period }}
+						</td>
+						<td>
+							{{ $v.Blue }}
+						</td>
+						<td>
+							{{ $v.Red }}
+						</td>
+					</tr>
+				{{ end }}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{{ template "footer"}}
