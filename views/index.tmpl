@@ -18,6 +18,9 @@
 				<thead>
 					<tr>
 						<th>
+							预测期号
+						</th>
+						<th>
 							生成时间
 						</th>
 						<th>
@@ -31,6 +34,9 @@
 				<tbody>
 				{{ range $_, $v := .arr }}
 					<tr>
+						<td>
+							{{ $v.Period }}
+						</td>
 						<td>
 							{{ $v.DateTime }}
 						</td>

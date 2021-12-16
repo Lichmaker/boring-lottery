@@ -18,6 +18,7 @@ func (hc *HomeController) Home(cont *gin.Context) {
 		DateTime string
 		Blue     uint64
 		Red      string
+		Period   string
 	}, 0, 10)
 	query, _ := prediction.Get(20)
 	for _, v := range query {
@@ -36,10 +37,12 @@ func (hc *HomeController) Home(cont *gin.Context) {
 			DateTime string
 			Blue     uint64
 			Red      string
+			Period   string
 		}{
 			v.CreatedAt.Format("2006-01-02 15:04:05"),
 			v.Blue,
 			buildRed,
+			v.Period,
 		})
 	}
 
@@ -71,4 +74,8 @@ func (hc *HomeController) Results(cont *gin.Context) {
 	cont.HTML(http.StatusOK, "results.tmpl", gin.H{
 		"arr": d,
 	})
+}
+
+func (hc *HomeController) UpdateHistory(cont *gin.Context) {
+	cont.HTML(http.StatusOK, "updateHistory.tmpl", nil)
 }

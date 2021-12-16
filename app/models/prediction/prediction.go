@@ -11,6 +11,7 @@ type Prediction struct {
 	Red4      uint64    `gorm:"column:red_4;type:uint;size:2;"`
 	Red5      uint64    `gorm:"column:red_5;type:uint;size:2;"`
 	Red6      uint64    `gorm:"column:red_6;type:uint;size:2;"`
+	Period    string    `gorm:"column:period;type:varchar(10);index:period_idx"`
 	CreatedAt time.Time `gorm:"column:created_at;"`
 }
 

@@ -19,6 +19,7 @@ func MyWeb(r *gin.Engine) {
 	var Web = web.WebGroupApp
 	r.GET("/", Web.HomeController.Home)
 	r.GET("/results", Web.HomeController.Results)
+	r.GET("/updateHistory", Web.HomeController.UpdateHistory)
 }
 
 func MyApi(r *gin.Engine) {
