@@ -16,7 +16,7 @@ func main() {
 	config.Initialize()
 	bootstrap.SetupDB()
 
-	// 周二/四/日开奖日的晚上 21:00 ~ 次日 01:30 之间， 不进行预测生成
+	// 周二/四/日开奖日的晚上 20:00 ~ 次日 01:30 之间， 不进行预测生成
 	now := time.Now()
 	location, _ := time.LoadLocation("Asia/Shanghai")
 	nowTime := now.Unix()
@@ -29,7 +29,7 @@ func main() {
 			return
 		}
 	case time.Tuesday.String(), time.Thursday.String(), time.Sunday.String():
-		if f, _ := time.ParseInLocation("2006-01-02 15:04:05", today+" 21:00:00", location); f.Unix() <= nowTime {
+		if f, _ := time.ParseInLocation("2006-01-02 15:04:05", today+" 20:00:00", location); f.Unix() <= nowTime {
 			fmt.Println("暂停生成！", f.Format("2006-01-02 15:04:05"))
 			return
 		}
